@@ -1,0 +1,25 @@
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashMap<Character,Integer> mpp=new HashMap<>();
+        int left=0;
+        int right=0;
+        int n=s.length();
+        int length=0;
+        while(right<n){
+            if(mpp.containsKey(s.charAt(right))){
+                left=Math.max(mpp.get(s.charAt(right))+1,left);
+            }
+            mpp.put(s.charAt(right),right);
+            length=Math.max(length,right-left+1);
+            right++;
+        }
+        return length;
+    }
+}
+
+
+// Time Complexity:
+// O(n)
+
+// Space Complexity:
+// O(min(n, charset))
